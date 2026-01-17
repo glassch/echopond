@@ -703,6 +703,25 @@ h1, h2, h3, h4, h5, h6 {
   width: auto;
 }
 
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 2rem;
+  margin-top: 1.5rem;
+}
+
+.footer-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  color: #888;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
 .footer-brand p {
   font-family: 'Lora', serif;
   font-size: 0.9375rem;
