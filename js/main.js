@@ -155,6 +155,35 @@
   }
 
   // ============================================
+  // Lazy Load Videos
+  // ============================================
+
+  function initLazyVideos() {
+    const lazyVideos = document.querySelectorAll('.lazy-video');
+    if (!lazyVideos.length) return;
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const video = entry.target;
+          const source = video.querySelector('source[data-src]');
+          if (source) {
+            source.src = source.dataset.src;
+            video.load();
+          }
+          videoObserver.unobserve(video);
+        }
+      });
+    }, {
+      rootMargin: '200px 0px'
+    });
+
+    lazyVideos.forEach(video => {
+      videoObserver.observe(video);
+    });
+  }
+
+  // ============================================
   // Smooth Scroll for Internal Links
   // ============================================
 
@@ -214,6 +243,7 @@
     initHeaderScroll();
     initMobileNav();
     initScrollReveal();
+    initLazyVideos();
     initSmoothScroll();
     initAudioToggle();
   }

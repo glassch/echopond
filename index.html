@@ -5,9 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Echo Pond by Of Possible. A 2,600-square-foot home on 11 acres overlooking a glacial kettle pond in Canton, Massachusetts, where Scandinavian sensibility meets New England tradition.">
 
-  <!-- Fonts -->
+  <!-- Preconnect for faster font loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Preload critical CSS -->
+  <link rel="preload" href="css/main.css" as="style">
+
+  <!-- Fonts with display=swap for faster text rendering -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
@@ -82,8 +87,8 @@
 
       <!-- Full Width Video -->
       <figure class="full-image">
-        <video autoplay muted loop playsinline class="full-video">
-          <source src="media/video/timelapse.mov" type="video/mp4">
+        <video autoplay muted loop playsinline preload="none" class="full-video lazy-video">
+          <source data-src="media/video/timelapse.mov" type="video/mp4">
         </video>
         <figcaption>Glen Echo Pond—a glacial kettle pond fed by groundwater, not streams</figcaption>
       </figure>
@@ -102,7 +107,7 @@
 
       <!-- Rocky Outcropping -->
       <figure class="full-image">
-        <img src="media/images/landscape/rocky outcroppings/IMG_4262.PNG" alt="Glacial erratic boulders scattered across the hillside above the pond">
+        <img src="media/images/landscape/rocky outcroppings/IMG_4262.PNG" alt="Glacial erratic boulders scattered across the hillside above the pond" loading="lazy">
         <figcaption>Glacial erratic boulders became collaborators in the design</figcaption>
       </figure>
 
@@ -118,8 +123,8 @@
 
       <!-- Pine Tar Shingle Video -->
       <figure class="full-image">
-        <video autoplay muted loop playsinline class="full-video">
-          <source src="media/video/pine tar shingle 2.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline preload="none" class="full-video lazy-video">
+          <source data-src="media/video/pine tar shingle 2.mp4" type="video/mp4">
         </video>
         <figcaption>The oversized pine-tarred shingles create a unified monolithic form</figcaption>
       </figure>
@@ -137,8 +142,8 @@
 
       <!-- Full Width Video -->
       <figure class="full-image">
-        <video autoplay muted loop playsinline class="full-video">
-          <source src="media/video/pine tar shingle 3.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline preload="none" class="full-video lazy-video">
+          <source data-src="media/video/pine tar shingle 3.mp4" type="video/mp4">
         </video>
         <figcaption>Pine-tarred marine-grade plywood shingles, designed to deepen with age</figcaption>
       </figure>
@@ -154,11 +159,11 @@
       <!-- Two Column Images -->
       <div class="image-grid">
         <figure>
-          <img src="assets/images/skylight.jpeg" alt="The portal—a large circular opening on the second floor overlooking the main living space">
+          <img src="assets/images/skylight.jpeg" alt="The portal—a large circular opening on the second floor overlooking the main living space" loading="lazy">
           <figcaption>The portal—a circular opening on the second floor that opens onto the main living space</figcaption>
         </figure>
         <figure>
-          <img src="media/images/architecture/breezeway/IMG_0194.JPG" alt="Covered breezeway connecting main house to studio">
+          <img src="media/images/architecture/breezeway/IMG_0194.JPG" alt="Covered breezeway connecting main house to studio" loading="lazy">
           <figcaption>The breezeway connecting dwelling and studio</figcaption>
         </figure>
       </div>
@@ -290,7 +295,7 @@
     <p class="footer-copyright">&copy; 2024 NS Builders & Of Possible</p>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 
 </body>
 </html>
