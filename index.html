@@ -5,9 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Echo Pond by Of Possible. A 2,600-square-foot home on 11 acres overlooking a glacial kettle pond in Canton, Massachusetts, where Scandinavian sensibility meets New England tradition.">
 
-  <!-- Fonts -->
+  <!-- Preconnect for faster font loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Preload critical CSS -->
+  <link rel="preload" href="css/main.css" as="style">
+
+  <!-- Fonts with display=swap for faster text rendering -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
@@ -17,13 +22,22 @@
 </head>
 <body>
 
+  <!-- Background Audio -->
+  <audio id="bg-audio" loop>
+    <source src="media/glass.mp3" type="audio/mpeg">
+  </audio>
+  <button id="audio-toggle" class="audio-toggle muted" aria-label="Play audio">
+    <span class="audio-icon">♪</span>
+  </button>
+
   <!-- Header -->
   <header class="site-header">
-    <a href="#" class="site-logo">Echo Pond by Of Possible | NS Builders</a>
-    <nav class="site-nav">
-      <a href="#">Architecture</a>
-      <a href="#">Interiors</a>
-      <a href="#">Lifestyle</a>
+    <nav class="site-nav site-nav--centered">
+      <a href="#site">Site</a>
+      <a href="#material">Material</a>
+      <a href="#space">Space</a>
+      <a href="#history">History</a>
+      <a href="#landscape">Landscape</a>
     </nav>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
       <span></span>
@@ -34,10 +48,11 @@
   <!-- Mobile Menu -->
   <div class="mobile-menu" aria-hidden="true">
     <nav class="mobile-menu-nav">
-      <a href="#">Architecture</a>
-      <a href="#">Interiors</a>
-      <a href="#">Lifestyle</a>
-      <a href="#">Subscribe</a>
+      <a href="#site">Site</a>
+      <a href="#material">Material</a>
+      <a href="#space">Space</a>
+      <a href="#history">History</a>
+      <a href="#landscape">Landscape</a>
     </nav>
   </div>
 
@@ -72,15 +87,15 @@
 
       <!-- Full Width Video -->
       <figure class="full-image">
-        <video autoplay muted loop playsinline class="full-video">
-          <source src="media/video/timelapse.mov" type="video/mp4">
+        <video autoplay muted loop playsinline preload="none" class="full-video lazy-video">
+          <source data-src="media/video/timelapse.mov" type="video/mp4">
         </video>
         <figcaption>Glen Echo Pond—a glacial kettle pond fed by groundwater, not streams</figcaption>
       </figure>
 
       <div class="article-body">
 
-        <h2>Site Response</h2>
+        <h2 id="site">Site Response</h2>
 
         <p>Approaching through the forest, one might mistake the dark silhouette for a barn or agricultural building that had always been there, settled into the hillside. The oversized shingles, treated to a near-black finish with pine tar, and the steep roof pitch catching morning light create a form that feels both ancient and unmistakably contemporary. Only when drawing closer does the precision reveal itself.</p>
 
@@ -92,13 +107,13 @@
 
       <!-- Rocky Outcropping -->
       <figure class="full-image">
-        <img src="media/images/landscape/rocky outcroppings/IMG_4262.PNG" alt="Glacial erratic boulders scattered across the hillside above the pond">
+        <img src="media/images/landscape/rocky outcroppings/IMG_4262.PNG" alt="Glacial erratic boulders scattered across the hillside above the pond" loading="lazy">
         <figcaption>Glacial erratic boulders became collaborators in the design</figcaption>
       </figure>
 
       <div class="article-body">
 
-        <h2>Material Philosophy</h2>
+        <h2 id="material">Material Philosophy</h2>
 
         <p>The signature material is the four-by-three-foot oversized shingles of marine-grade plywood, sealed with pine tar. The scale creates a monolithic form where walls and roof read as continuous surface, while the pine tar treatment bridges Scandinavian and New England maritime heritage—from Viking longships to colonial shipyards.</p>
 
@@ -108,8 +123,8 @@
 
       <!-- Pine Tar Shingle Video -->
       <figure class="full-image">
-        <video autoplay muted loop playsinline class="full-video">
-          <source src="media/video/pine tar shingle 2.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline preload="none" class="full-video lazy-video">
+          <source data-src="media/video/pine tar shingle 2.mp4" type="video/mp4">
         </video>
         <figcaption>The oversized pine-tarred shingles create a unified monolithic form</figcaption>
       </figure>
@@ -127,15 +142,15 @@
 
       <!-- Full Width Video -->
       <figure class="full-image">
-        <video autoplay muted loop playsinline class="full-video">
-          <source src="media/video/pine tar shingle 3.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline preload="none" class="full-video lazy-video">
+          <source data-src="media/video/pine tar shingle 3.mp4" type="video/mp4">
         </video>
         <figcaption>Pine-tarred marine-grade plywood shingles, designed to deepen with age</figcaption>
       </figure>
 
       <div class="article-body">
 
-        <h2>Spatial Experience</h2>
+        <h2 id="space">Spatial Experience</h2>
 
         <p>Cross the threshold and the house inverts itself. The dark, nearly mute exterior gives way to luminous interiors filled with natural light. An open plan with muted tones expands the sense of space while maintaining warmth. Concrete floors ground the rooms with mass and permanence. White oak cabinetry adds warm tones, and a built-in banquette nestled beside a nine-by-nine-foot window opening to the pond offers the coziness of a favourite restaurant booth—at home.</p>
 
@@ -144,11 +159,11 @@
       <!-- Two Column Images -->
       <div class="image-grid">
         <figure>
-          <img src="assets/images/skylight.jpeg" alt="The portal—a large circular opening on the second floor overlooking the main living space">
+          <img src="assets/images/skylight.jpeg" alt="The portal—a large circular opening on the second floor overlooking the main living space" loading="lazy">
           <figcaption>The portal—a circular opening on the second floor that opens onto the main living space</figcaption>
         </figure>
         <figure>
-          <img src="media/images/architecture/breezeway/IMG_0194.JPG" alt="Covered breezeway connecting main house to studio">
+          <img src="media/images/architecture/breezeway/IMG_0194.JPG" alt="Covered breezeway connecting main house to studio" loading="lazy">
           <figcaption>The breezeway connecting dwelling and studio</figcaption>
         </figure>
       </div>
@@ -183,7 +198,7 @@
 
       <div class="article-body">
 
-        <h2>Heritage and Memory</h2>
+        <h2 id="history">Heritage and Memory</h2>
 
         <p>The site carries layers of history beyond the glacial. In the 1890s, entrepreneur Elisha C. Monk transformed the pond—then known as York Pond—into Glen Echo Resort, a destination featuring a dance pavilion, bowling alley, bathhouses, and boating that drew visitors from Boston via the trolley line from Mattapan. No alcohol was allowed; families came by the hundreds on summer weekends.</p>
 
@@ -221,13 +236,13 @@
 
       <div class="article-body">
 
-        <h2>Living With the Land</h2>
+        <h2 id="landscape">Living With the Land</h2>
 
-        <p>The landscape design, by Terry Fitzpatrick of Dialogue-Environment Studio, employs a gradient-based ecological approach across 34,400 square feet. Four native seed mixes—calibrated to site-specific conditions of slope, hydrology, and sun exposure—create habitat continuity rather than isolated patches. Regional ecotypes sourced from Pennsylvania, Rhode Island, and Ohio ensure seasonal bloom from spring through late fall.</p>
+        <p>New England's modernist architects gravitated toward what others dismissed as unbuildable—steep slopes, rocky outcroppings, terrain that defied the leveled agrarian plots of earlier centuries. The discipline of working with difficult land, rather than against it, produced buildings that echoed topography and settled into landscape as if they had always been there. Echo Pond continues this tradition. The glacial boulders scattered across the hillside, the severe grade dropping toward the pond, the protected wetlands constraining footprint—these were not problems to solve but conditions to honor.</p>
 
-        <p>This is not ornamental landscaping but functional habitat restoration. Winter dormant "frost-seeding" applied to frozen soil gives way to first-year mowing that suppresses weeds while natives establish roots. By year three, only annual late-winter mowing is required—leaving standing dead material for overwintering habitat. No irrigation, fertilisation, or pesticides. A landscape designed to mature into something self-sustaining.</p>
+        <p>The landscape design, by Terry Fitzpatrick of Dialogue-Environment Studio, extends this philosophy across 34,400 square feet. A gradient-based ecological approach deploys four native seed mixes calibrated to site-specific conditions of slope, hydrology, and sun exposure, creating habitat continuity rather than isolated patches. Regional ecotypes sourced from Pennsylvania, Rhode Island, and Ohio ensure seasonal bloom from spring through late fall. No irrigation, fertilization, or pesticides. Like the house it surrounds, the landscape is designed to mature into something self-sustaining—to become more itself over time.</p>
 
-        <p>From the carefully considered siting that preserves wetlands to the material choices that connect continents of tradition, Echo Pond demonstrates how architecture can emerge from deep listening—to land, to history, to the people who will dwell within. It is a home that will grow more beautiful as it weathers, not worse. That long view—temporal as much as aesthetic—is perhaps what gives the project its meaning.</p>
+        <p>From the siting that preserves wetlands to the materials connecting Nordic and New England maritime traditions, the project demonstrates how architecture emerges from deep listening: to land, to history, to the people who will dwell within. It is a home designed to grow more beautiful as it weathers. That long view—temporal as much as aesthetic—is perhaps what gives New England modernism its continuing vitality, and this project its meaning.</p>
 
       </div>
 
@@ -261,26 +276,26 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-content">
-      <div class="footer-brand">
-        <span class="footer-logo">Echo Pond by Of Possible | NS Builders</span>
-        <p>Exploring how locality shapes homes, interiors and spaces.</p>
+      <div class="footer-logo-group">
+        <img src="assets/images/nsb-black.png" alt="NS Builders" class="footer-logo-img">
+        <div class="footer-links">
+          <a href="https://www.instagram.com/nsbuilders/?hl=en" target="_blank">Instagram</a>
+          <a href="https://www.youtube.com/channel/UCIo1gaS5cLsCtgaCLhi08cg" target="_blank">Youtube</a>
+        </div>
       </div>
-      <nav class="footer-nav">
-        <a href="#">Architecture</a>
-        <a href="#">Interiors</a>
-        <a href="#">Lifestyle</a>
-        <a href="#">Subscribe</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
-      <div class="footer-social">
-        <a href="#" aria-label="Instagram">Instagram</a>
-        <a href="#" aria-label="Pinterest">Pinterest</a>
+      <div class="footer-logo-group">
+        <img src="assets/images/op-black.png" alt="Of Possible" class="footer-logo-img">
+        <div class="footer-links">
+          <a href="https://www.instagram.com/of_possible/?hl=en" target="_blank">Instagram</a>
+          <a href="https://www.ofpossible.com/" target="_blank">Website</a>
+        </div>
       </div>
     </div>
+    <p class="footer-music">Music: <a href="https://www.youtube.com/watch?v=l0yRNQj2_tc" target="_blank">Hania Rani - Glass</a> (Gondwana Records)</p>
+    <p class="footer-copyright">&copy; 2024 NS Builders & Of Possible</p>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 
 </body>
 </html>

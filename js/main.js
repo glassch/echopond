@@ -19,7 +19,9 @@
     header: document.querySelector('.site-header'),
     navToggle: document.querySelector('.nav-toggle'),
     mobileMenu: document.querySelector('.mobile-menu'),
-    fadeElements: document.querySelectorAll('.article-body, .full-image, .image-grid, .article-credits, .related')
+    fadeElements: document.querySelectorAll('.article-body, .full-image, .image-grid, .article-credits, .related'),
+    audio: document.getElementById('bg-audio'),
+    audioToggle: document.getElementById('audio-toggle')
   };
 
   // State
@@ -27,7 +29,8 @@
     lastScrollY: 0,
     headerVisible: true,
     menuOpen: false,
-    ticking: false
+    ticking: false,
+    audioMuted: false
   };
 
   // ============================================
@@ -152,6 +155,35 @@
   }
 
   // ============================================
+  // Lazy Load Videos
+  // ============================================
+
+  function initLazyVideos() {
+    const lazyVideos = document.querySelectorAll('.lazy-video');
+    if (!lazyVideos.length) return;
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const video = entry.target;
+          const source = video.querySelector('source[data-src]');
+          if (source) {
+            source.src = source.dataset.src;
+            video.load();
+          }
+          videoObserver.unobserve(video);
+        }
+      });
+    }, {
+      rootMargin: '200px 0px'
+    });
+
+    lazyVideos.forEach(video => {
+      videoObserver.observe(video);
+    });
+  }
+
+  // ============================================
   // Smooth Scroll for Internal Links
   // ============================================
 
@@ -178,6 +210,32 @@
   }
 
   // ============================================
+  // Audio Toggle
+  // ============================================
+
+  function initAudioToggle() {
+    if (!elements.audio || !elements.audioToggle) return;
+
+    // Start with audio paused
+    state.audioPlaying = false;
+    elements.audioToggle.addEventListener('click', toggleAudio);
+  }
+
+  function toggleAudio() {
+    if (state.audioPlaying) {
+      elements.audio.pause();
+      state.audioPlaying = false;
+      elements.audioToggle.classList.add('muted');
+      elements.audioToggle.setAttribute('aria-label', 'Play audio');
+    } else {
+      elements.audio.play();
+      state.audioPlaying = true;
+      elements.audioToggle.classList.remove('muted');
+      elements.audioToggle.setAttribute('aria-label', 'Pause audio');
+    }
+  }
+
+  // ============================================
   // Initialize
   // ============================================
 
@@ -185,7 +243,9 @@
     initHeaderScroll();
     initMobileNav();
     initScrollReveal();
+    initLazyVideos();
     initSmoothScroll();
+    initAudioToggle();
   }
 
   // Run on DOM ready
