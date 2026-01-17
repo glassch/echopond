@@ -798,11 +798,29 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+.footer-music {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid #333;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6875rem;
+  text-align: center;
+  color: #666;
+}
+
+.footer-music a {
+  color: #888;
+  transition: color 0.2s ease;
+}
+
+.footer-music a:hover {
+  color: #fff;
+}
+
 .footer-copyright {
   max-width: 1200px;
-  margin: 3rem auto 0;
-  padding-top: 2rem;
-  border-top: 1px solid #333;
+  margin: 1rem auto 0;
   font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   text-align: center;
