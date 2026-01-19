@@ -149,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-toggle {
   position: absolute;
   right: 2rem;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
@@ -159,6 +159,37 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   cursor: pointer;
   padding: 0;
+}
+
+/* Scrollable nav on mobile */
+@media (max-width: 767px) {
+  .site-header {
+    padding: 0;
+    display: block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .site-nav,
+  .site-nav.site-nav--centered {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem;
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .site-nav a {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Hide hamburger - using scrollable nav instead */
+  .nav-toggle {
+    display: none;
+  }
 }
 
 .nav-toggle span {
@@ -183,23 +214,46 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Mobile Menu */
+/* Mobile Menu - Slide-in Drawer */
 .mobile-menu {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  max-width: 80vw;
   z-index: 99;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
+  transform: translateX(100%);
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: transform 0.3s ease, visibility 0.3s ease;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-menu.is-open {
-  opacity: 1;
+  transform: translateX(0);
   visibility: visible;
+}
+
+/* Overlay behind drawer */
+.mobile-menu::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 280px;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.mobile-menu.is-open::before {
+  background: rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
 }
 
 .mobile-menu-nav {
@@ -277,7 +331,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .hero-title {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
   .hero-tagline {
